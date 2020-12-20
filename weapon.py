@@ -1,4 +1,6 @@
 
+# Armas
+
 from item import Item
 
 # Weapon herda de Item

@@ -1,10 +1,18 @@
+# Bibliotecas do sistema
+import random
 
+# Inimigo
 class Enemy():
+    gold = 0
+
     def __init__(self, name, health, power, experience):
         self.name = name
         self.health = health
         self.power = power
         self.experience = experience
+
+        # define entre 10% e 20% da Experiência
+        self.gold = int(experience * (random.randrange(10, 20)/100))
 
     def setName(self, name):
         self.name = name
@@ -30,9 +38,13 @@ class Enemy():
     def getExperience(self):
         return self.experience
 
+    def getGold(self):
+        return self.gold
+
     def status(self):
         print("======== Enemy Stats =======")        
-        print("Name = " + self.name)
-        print("Health = " + str(self.health))
-        print("Power = " + str(self.power))
-        print("XP = " + str(self.experience))
+        print("Name = " + self.getName())
+        print("Health = " + str(self.getHealth()))
+        print("Power = " + str(self.getPower()))
+        print("XP = " + str(self.getExperience()))
+        print("Gold = " + str(self.getGold()))

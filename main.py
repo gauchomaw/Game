@@ -1,6 +1,6 @@
 # RPG 
 # Jogador encontra inimigos pelo mapa
-#   Ganha experiência enfrentando-os e os matando
+#   Ganha experiência com quests e matando inimigos
 
 from game import Game
 

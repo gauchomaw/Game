@@ -1,9 +1,17 @@
 
+# Jogador
+
 class Player():
     gold = 0
     experience = 0
     weapons = []
     inventario = []
+
+    # forca
+    # inteligencia
+    # talento
+    # agilidade
+    # vitalidade
 
     def __init__(self, name, health, experience):
         self.name = name
@@ -57,6 +65,7 @@ class Player():
     def getInventario(self):
         return self.inventario
     
+    #Imprime o status do jogador
     def status(self):
         print("====== Player Stats ======")
         print("Player = " + self.getName())
