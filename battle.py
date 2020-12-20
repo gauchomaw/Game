@@ -16,7 +16,7 @@ class Battle():
         else:
             self.hitEnemy()
             self.hitPlayer()
-        self.status()
+        #self.status()
     
     def hitPlayer(self):
         # Hit Player

@@ -7,6 +7,7 @@ To Do:
     [] Criar drops
     [] Criar mapa
 
+    [v] implementado mana e stamina
     [v] drop de gold criado
     [v] Definir hit do inimigo
     [v] Criação das classes e atributos essenciais

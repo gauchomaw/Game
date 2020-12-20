@@ -2,6 +2,8 @@
 # Jogador
 
 class Player():
+    mana = 0
+    stamina = 0
     gold = 0
     experience = 0
     weapons = []
@@ -65,14 +67,29 @@ class Player():
     def getInventario(self):
         return self.inventario
     
+    def addMana(self, mana):
+        self.mana = mana
+
+    def getMana(self):
+        return self.mana
+
+    def addStamina(self, stamina):
+        self.stamina = stamina
+    
+    def getStamina(self):
+        return self.stamina
+
+    
     #Imprime o status do jogador
     def status(self):
         print("====== Player Stats ======")
         print("Player = " + self.getName())
         print("Health = " + str(self.getHealth()))
+        print("Mana = " + str(self.getMana()))
+        print("Stamina = " + str(self.getStamina()))
         print("Power = " + str(self.getPower()))
         print("Gold = " + str(self.getGold()))
         print("Nivel = " + str(self.getNivel()))
-        print("XP = " + str(self.experience))
+        print("XP = " + str(self.getExperience()))
         for weapon in self.weapons:
             weapon.status()

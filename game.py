@@ -17,7 +17,7 @@ class Game():
         
         print("Criando arma")
         # Criar arma
-        weapon = Weapon("Sword Low", "Attack", 13)
+        weapon = Weapon("Sword Low", "Attack", random.randrange(10,20))
         self.weapons.append(weapon)
 
         # Criar player
@@ -104,11 +104,12 @@ class Game():
     def updateUI(self):
         os.system('cls' if os.name == 'nt' else 'clear')
         print( \
-        "========================================================================\n" + \
-        "|Player: " + self.players[0].getName() + "\t\t Gold: " + str(self.players[0].getGold()) + "\n" \
-        "|Health: " + str(self.players[0].getHealth()) + "\t\t\t Power: " + str(self.players[0].getPower()) + "\n" \
-        "|Nivel: " + str(self.players[0].getNivel()) + "\t\t\t XP: " + str(self.players[0].getExperience()) + "\n" \
-        "========================================================================\n")
+        "|=============================================================\n" + \
+        "| Player: " + self.players[0].getName() + "\t\t   Gold: " + str(self.players[0].getGold()) + "\n" \
+        "| Health: " + str(self.players[0].getHealth()) + "\t\t\t   Mana: "  + str(self.players[0].getMana()) + "\n" \
+        "|Stamina: " + str(self.players[0].getStamina()) + "\t\t\t  Power: " + str(self.players[0].getPower()) + "\n" \
+        "|  Nivel: " + str(self.players[0].getNivel()) + "\t\t\t     XP: " + str(self.players[0].getExperience()) + "\n" \
+        "|==============================================================\n")
 
     # Imprimir status dos jagadores
     def statusPlayers(self):
