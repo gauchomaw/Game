@@ -1,4 +1,3 @@
-import sys
 
 # Cria uma barra horizontal
 class Bar():
