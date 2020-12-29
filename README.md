@@ -7,6 +7,11 @@ To Do:
     [] Criar drops
     [] Criar mapa
 
+    29/12
+    [v] criada a classe bar, responsável por simular as barras de progresso (health, mana, stamina)
+    [v] implementado barras de health, mana e stamina
+    [v] código movido para diretório src
+    
     [v] implementado mana e stamina
     [v] drop de gold criado
     [v] Definir hit do inimigo
