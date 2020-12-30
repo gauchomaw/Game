@@ -1,6 +1,7 @@
 # Bibliotecas de sistema
 import random
 import os
+import string
 
 # Bibliotecas do jogo
 from player import Player
@@ -10,20 +11,21 @@ from battle import Battle
 from bar import Bar
 
 class Game():
-    players = []    #Lista de jogadores
-    enemys = []     #Lista de inimigos
+    players = []    # Lista de jogadores
+    enemys = []     # Lista de inimigos
     weapons = []    # Lista de armas
+    defenses = []   # Lista de defesas
 
     def run(self):
         
         print("Criando arma")
         # Criar arma
-        weapon = Weapon("Sword Low", "Attack", random.randrange(10,20))
+        weapon = Weapon("Espada", "Attack", random.randrange(10,20))
         self.weapons.append(weapon)
 
         # Criar player
         print("Criando char...")
-        player = Player("Player 1", 1000, 1)
+        player = Player("GauchoMaw", 1000, 1)
         player.setWeapon(self.weapons[0])
         self.players.append(player)
         
@@ -32,11 +34,17 @@ class Game():
 
     # criar inimigos randômicos
     def createRandomEnemy(self, nivel):
+        vList = ['a','e','i','o','u']
+        fList1 = ['am', 'an', 'em', 'en', 'im', 'in', 'om', 'on', 'um', 'un']
+        fList2 = ['p', 'b', 'm', 'f', 'v', 't', 'd', 'n', 'nh', 'l', 'lh', 'r']
+        fList3 = ['rr', 'z', 's', 'x', 'ss', 'c', 'sc', 'j', 'g', 'x', 'ch', 'gu', 'c', 'qu']
+
         h = random.randrange(1 + (nivel * 100 - 100), nivel * 100)
         p = random.randrange(1 + (nivel * 100 - 100), nivel * 100)
         xp = random.randrange(1 + (nivel * 100 - 100), nivel * 100)
-        name = str(h)
-        enemy = Enemy("Enemy " + name, h, p, xp)
+        name = (random.choice(fList1) + random.choice(vList) + random.choice(fList2) + random.choice(vList) + random.choice(fList3) + random.choice(vList)).lower().capitalize()
+        #name = ''.join(random.choice(sList) for _ in range(4))
+        enemy = Enemy(name, h, p, xp)
         self.enemys.append(enemy)
 
         # Nível 1: 1 a 100
@@ -51,12 +59,9 @@ class Game():
             self.updateUI()
 
             # print("[w | a | s | d] Mover")
-            print("[b] Batalha")
-            print("[i] Inventário")
-            print("[1] Player Status")
-            print("[2] Player Enemys")
-            print("[e] Sair")
-            option = input("Informe sua opção: ")
+            print("[b] Batalha\t\t [i] Inventário\t\t [e] Sair")
+            print("[1] Player Status\t [2] Enemys Status\t [3] Itens Status" )
+            option = input("Sua ação? ")
             if option == "e":
                 break
             if option == "b":
@@ -73,7 +78,7 @@ class Game():
                         if self.players[0].health <= 0:
                             input("Você morreu. Retornando para a cidade...")
 
-                            #define Health para 1000
+                            #define Health inicial para 1000
                             self.players[0].setHealth(1000)
                             break
                         if self.enemys[i].health > 0:                       
@@ -86,7 +91,19 @@ class Game():
                                 print("Opção inválida. Tente novamente...")
                         if self.enemys[i].health <= 0:
                             # print("Inimigo morto - XP: " + str(self.enemys[i].getExperience()))
+
+                            #dropa itens aleatórios
+                            items = self.enemys[i].getDrop()
+                            for item in items:
+                                if item.getType() == "Attack":
+                                    self.weapons.append(item)
+                                if item.getType() == "Defense":
+                                    self.defenses.append(item)
+                                item.status()
+                            
                             del(self.enemys[i])
+                            input("pressione <enter> para continuar... ")
+                            self.updateUI()
                             break
             if option == "i":
                 self.updateUI()
@@ -100,6 +117,8 @@ class Game():
                 self.statusPlayers()
             if option == "2":
                 self.statusEnemys()
+            if option == "3":
+                self.statusItems()
 
     # Atualiza Interface
     def updateUI(self):
@@ -119,7 +138,7 @@ class Game():
         "|  Power: " + str(self.players[0].getPower()) + "\n" \
         "|  Nivel: " + str(self.players[0].getNivel()) + "\n" \
         "|     XP: " + xpBar.show() + "\n" \
-        "|------------------------------------------------------------\n")
+        " ------------------------------------------------------------\n")
 
     # Imprimir status dos jagadores
     def statusPlayers(self):
@@ -132,3 +151,12 @@ class Game():
         for enemy in self.enemys:
             enemy.status()
             input("pressione uma tecla para continuar... ")
+
+    def statusItems(self):
+        for w in self.weapons:
+            w.status()
+        
+        for d in self.defenses:
+            d.status()
+        
+        input("pressione uma tecla para continuar... ")            

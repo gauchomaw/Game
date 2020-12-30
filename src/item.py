@@ -31,7 +31,7 @@ from enum import Enum
         # 3.4 BRINCOS
     
     #4 Others
-        # 4.1 Gold
+        # 4.1 Pote Resistência
         # 4.2 Pote Mana
         # 4.3 Pote Life
 
@@ -44,9 +44,10 @@ class Typei(Enum):
 
 # Representa todos os itens do jogo: weapon, armor, ring, etc...
 class Item():
-    def __init__(self, name, typei):
+    def __init__(self, name, typei, owner = ""):
         self.name = name
         self.typei = typei
+        self.owner = owner
     
     def setName(self, name):
         self.name = name
@@ -59,3 +60,9 @@ class Item():
     
     def getType(self):
         return self.typei
+
+    def setOwner(self, owner):
+        self.owner = owner
+    
+    def getOwner(self):
+        return self.owner

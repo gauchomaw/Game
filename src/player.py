@@ -47,6 +47,7 @@ class Player():
         return self.experience
 
     def setWeapon(self, weapon):
+        weapon.setOwner(self.getName())
         self.weapons.append(weapon)
 
     def getWeapons(self):

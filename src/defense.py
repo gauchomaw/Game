@@ -1,13 +1,10 @@
-
-# Armas
-
 from item import Item
 
-# Weapon herda de Item
-class Weapon(Item):
-    def __init__(self, name, typei, power):
+# Defense herda de Item
+class Defense(Item):
+    def __init__(self, name, typei, defense):
         super().__init__(name, typei)
-        self.power = power
+        self.defense = defense
     
     def setName(self, name):
         super().setName(name)
@@ -25,17 +22,17 @@ class Weapon(Item):
         super().setOwner(owner)
 
     def getOwner(self):
-        return super().getOwner()
+        return super().getOwner()        
     
-    def setPower(self, power):
-        self.power = power
+    def setDefense(self, defense):
+        self.defense = defense
     
-    def getPower(self):
-        return self.power
+    def getDefense(self):
+        return self.defense
 
     def status(self):
-        print("====== Weapon Stats ======")
+        print("====== Defense Stats ======")
         print("Name = " + self.getName())
         print("Type = " + str(self.getType()))
-        print("Power = " + str(self.getPower()))
+        print("Defense = " + str(self.getDefense()))
         print("Owner = " + str(self.getOwner()))
